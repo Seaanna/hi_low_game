@@ -7,7 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<!-- create credentials that will appear on every page -->
+<%= flash[:notice] = "For valid credentials, please make sure you follow the rules below. ID must not include '#','$','!'. ID must be greater than 5 letters. Password must include '!', '#', or '$'. Password cannot be all caps or all lowercase. Password has to include a number."%>
+<hr/>
 
+<!-- yield grabs the .html.erb  code and puts it in the html file to display -->
 <%= yield %>
 
 </body>

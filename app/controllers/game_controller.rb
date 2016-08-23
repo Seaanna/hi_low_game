@@ -2,12 +2,13 @@ class GameController < ActionController::Base
 
   def try
     # store a secret number in a cookie
-    # if the cookies are not defined
+    # cookies need to not be defined
     if session[:secret].nil?
-      # cookies will equal 17
+      # cookies need to equal an encrypted random number
       session[:secret] = Random.rand(1..11)
     end
     # creates the counter to 0 if a number does not exist
+    # cookie counter needs to start undefined
     if cookies[:counter].nil?
       # set counter to 0
       cookies[:counter] = 0
@@ -28,6 +29,14 @@ class GameController < ActionController::Base
       @result = 'too high'
     # set an instance variable to the result (call it @result) of the guess (high/low/win)
     # win
+    elsif cookies[:counter] == 5
+      @result = 'YOU LOSE'
+    # resets the counter to -1 because on enter the counter will increase
+    cookies[:counter] = 0
+    #encrypted number will reset to another random number
+    session[:secret] = Random.rand(1..11)
+    # redirect to the home page
+    # redirect_to "http://localhost:3000/game"
     else
       @result = 'You win'
       # new random number will be chosen after you win
@@ -37,17 +46,13 @@ class GameController < ActionController::Base
     end
     # the view needs to be rendered
     render 'try.html.erb'
-
-  end # end of def try
-  # Create a route (/new_game) and controller method (reset) to reset the game.
-  def reset
-    # resets the counter to -1 because on enter the counter will increase
-    cookies[:counter] = -1
-    #encrypted number will reset to another random number
-    session[:secret] = Random.rand(1..11)
-    # redirect to the home page
-    redirect_to "http://localhost:3000/game"
   end
+end # end of def try
 
-end
+  # Create a route (/new_game) and controller method (reset) to reset the game.
+#   def reset
+#
+#
+#
+# end
 # end of class

@@ -1,0 +1,16 @@
+<form action="check_password" method="get">
+  <input type="text" name="name"/>
+  <input type="text" name="code"/>
+  <input type="submit" value="Submit"/>
+</form>
+<br>
+
+<%= @userid %>
+<%= @password %>
+<br>
+<hr/>
+<!-- flash will show if credentials are valid or not valid once check method has run with the instance variable @message and @message2 -->
+<%= flash.now[:alert] = "User Id is " + @message2 %>
+<br>
+<br>
+<%= flash.now[:alert] = "Password is " + @message %>

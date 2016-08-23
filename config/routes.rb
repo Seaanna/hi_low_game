@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get '/game' => 'game#try'
   # resets the game and runs the rest method
   get '/newgame' =>'game#reset'
+  # 
+  get '/check_password' => 'password#check'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
